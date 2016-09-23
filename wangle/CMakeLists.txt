@@ -94,7 +94,8 @@ target_link_libraries(wangle
   ${Boost_LIBRARIES}
   ${OPENSSL_LIBRARIES}
   ${GLOG_LIBRARY_PATH}
-  ${GFLAGS_LIBRARY_PATH})
+  ${GFLAGS_LIBRARY_PATH}
+  pthread)
 
 install(TARGETS wangle DESTINATION lib)
 foreach(dir ${WANGLE_HEADER_DIRS})
@@ -198,4 +199,6 @@ if(BUILD_EXAMPLES)
   target_link_libraries(AcceptServer wangle)
   add_executable(BroadcastProxy example/broadcast/BroadcastProxy.cpp)
   target_link_libraries(BroadcastProxy wangle)
+  add_executable(MultiCore example/multicore/MultiCore.cpp)
+  target_link_libraries(MultiCore wangle)
 endif()
