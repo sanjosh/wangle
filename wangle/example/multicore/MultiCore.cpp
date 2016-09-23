@@ -43,7 +43,8 @@ int main()
     bool repeat;
     do {
       try {
-        auto fut = executors[i % numCores]->addFuture(threadFunc);
+        std::chrono::milliseconds expiration;
+        auto fut = executors[i % numCores]->addFuture(threadFunc, i % 2, expiration);
         futVec.push_back(std::move(fut));
         std::cout << "submitted job=" << i << std::endl;
         repeat = false;
